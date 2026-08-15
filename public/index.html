@@ -25,7 +25,7 @@
         <span>Jennifer</span><span>Victoria</span>
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>
-        <span></span><span></span><span class="sr-only">Open menu</span>
+        <span></span><span></span><span class="sr-only" data-menu-label>Open menu</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Primary" data-nav>
         <a href="#reels">Voice reels</a>
@@ -45,7 +45,7 @@
           <div class="hero-actions">
             <button class="button button-primary" type="button" data-play-master>
               <span class="play-icon" aria-hidden="true">▶</span>
-              Play voice reel
+              Play Tech / Instructional
             </button>
             <a class="button button-quiet" href="#contact">Book Jennifer <span aria-hidden="true">↗</span></a>
           </div>
@@ -67,7 +67,7 @@
           </button>
           <div class="player-track">
             <p>Now playing</p>
-            <strong data-player-title>Tech / Instructional</strong>
+            <strong data-player-title aria-live="polite" aria-atomic="true">Tech / Instructional</strong>
           </div>
           <label class="player-progress">
             <span class="sr-only">Recording progress</span>
@@ -84,22 +84,22 @@
           <p>From gentle narration to bright character work—choose a direction and press play.</p>
         </div>
         <div class="reel-list reveal">
-          <button class="reel is-active" type="button" data-reel data-title="Tech / Instructional" data-src="/assets/audio/tech-instructional.mp3" data-duration="0:40" aria-label="Play Tech / Instructional">
+          <button class="reel is-active" type="button" data-reel data-title="Tech / Instructional" data-src="/assets/audio/tech-instructional.mp3" data-duration="0:40" aria-label="Play Tech / Instructional" aria-pressed="true">
             <span class="reel-number">01</span><strong>Tech / Instructional</strong><span>Clear · polished · direct</span><i aria-hidden="true">▶</i>
           </button>
-          <button class="reel" type="button" data-reel data-title="Cozy and Warm Narration" data-src="/assets/audio/cozy-warm-narration.mp3" data-duration="1:10" aria-label="Play Cozy and Warm Narration">
+          <button class="reel" type="button" data-reel data-title="Cozy and Warm Narration" data-src="/assets/audio/cozy-warm-narration.mp3" data-duration="1:10" aria-label="Play Cozy and Warm Narration" aria-pressed="false">
             <span class="reel-number">02</span><strong>Cozy and Warm Narration</strong><span>Gentle · sincere · inviting</span><i aria-hidden="true">▶</i>
           </button>
-          <button class="reel" type="button" data-reel data-title="Emotional / Dramatic Read" data-src="/assets/audio/emotional-dramatic-read.mp3" data-duration="0:41" aria-label="Play Emotional / Dramatic Read">
+          <button class="reel" type="button" data-reel data-title="Emotional / Dramatic Read" data-src="/assets/audio/emotional-dramatic-read.mp3" data-duration="0:41" aria-label="Play Emotional / Dramatic Read" aria-pressed="false">
             <span class="reel-number">03</span><strong>Emotional / Dramatic Read</strong><span>Intimate · cinematic · grounded</span><i aria-hidden="true">▶</i>
           </button>
-          <button class="reel" type="button" data-reel data-title="Warm and Whimsical Read" data-src="/assets/audio/warm-whimsical-read.mp3" data-duration="0:26" aria-label="Play Warm and Whimsical Read">
+          <button class="reel" type="button" data-reel data-title="Warm and Whimsical Read" data-src="/assets/audio/warm-whimsical-read.mp3" data-duration="0:26" aria-label="Play Warm and Whimsical Read" aria-pressed="false">
             <span class="reel-number">04</span><strong>Warm and Whimsical Read</strong><span>Playful · bright · expressive</span><i aria-hidden="true">▶</i>
           </button>
-          <button class="reel" type="button" data-reel data-title="Sassy and Fun Commercial" data-src="/assets/audio/sassy-fun-commercial.mp3" data-duration="0:59" aria-label="Play Sassy and Fun Commercial">
+          <button class="reel" type="button" data-reel data-title="Sassy and Fun Commercial" data-src="/assets/audio/sassy-fun-commercial.mp3" data-duration="0:59" aria-label="Play Sassy and Fun Commercial" aria-pressed="false">
             <span class="reel-number">05</span><strong>Sassy and Fun Commercial</strong><span>Bold · lively · confident</span><i aria-hidden="true">▶</i>
           </button>
-          <button class="reel" type="button" data-reel data-title="Girly and Glam Commercial" data-src="/assets/audio/girly-glam-commercial.mp3" data-duration="0:29" aria-label="Play Girly and Glam Commercial">
+          <button class="reel" type="button" data-reel data-title="Girly and Glam Commercial" data-src="/assets/audio/girly-glam-commercial.mp3" data-duration="0:29" aria-label="Play Girly and Glam Commercial" aria-pressed="false">
             <span class="reel-number">06</span><strong>Girly and Glam Commercial</strong><span>Stylish · upbeat · sparkling</span><i aria-hidden="true">▶</i>
           </button>
         </div>
@@ -121,22 +121,22 @@
             <p class="work-meta">Voiceover · Family entertainment</p>
             <h3>KidZania</h3>
             <p>A fun, energetic performance created for an interactive experience—bright, playful and designed to connect with young audiences.</p>
-            <a class="text-link" href="/assets/video/kidzania-voiceover.mp4">Open the full video <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="/assets/video/kidzania-voiceover.mp4" target="_blank" rel="noreferrer">Open video in a new tab <span aria-hidden="true">↗</span></a>
           </div>
         </article>
         <div class="client-strip reveal" aria-label="Selected clients">
           <span>Selected clients</span>
-          <img src="/assets/brands/2gis.png" alt="2GIS" loading="lazy" />
-          <img src="/assets/brands/megafon.png" alt="MegaFon" loading="lazy" />
-          <img src="/assets/brands/sber.svg" alt="Sber" loading="lazy" />
-          <img src="/assets/brands/metro.svg" alt="METRO" loading="lazy" />
+          <span class="client-logo"><img src="/assets/brands/2gis.png" alt="2GIS" loading="lazy" /></span>
+          <span class="client-logo"><img src="/assets/brands/megafon.png" alt="MegaFon" loading="lazy" /></span>
+          <span class="client-logo"><img src="/assets/brands/sber.svg" alt="Sber" loading="lazy" /></span>
+          <span class="client-logo metro-wordmark" role="img" aria-label="METRO">METRO</span>
         </div>
       </section>
 
       <section class="about section" id="about" aria-labelledby="about-title">
         <div class="about-images reveal">
           <img class="about-main" src="/assets/jennifer-about.webp" alt="Jennifer Victoria portrait" loading="lazy" />
-          <img class="about-small" src="/assets/jennifer-about-detail.webp" alt="Jennifer Victoria in a studio portrait" loading="lazy" />
+          <img class="about-small" src="/assets/gallery/img_3925.jpg" alt="Jennifer Victoria seated in a black dress" loading="lazy" />
         </div>
         <div class="about-copy reveal">
           <p class="eyebrow">Meet Jennifer</p>

@@ -1,4 +1,5 @@
 const menuButton = document.querySelector("[data-menu-button]");
+const menuLabel = document.querySelector("[data-menu-label]");
 const nav = document.querySelector("[data-nav]");
 const reelButtons = [...document.querySelectorAll("[data-reel]")];
 const masterButton = document.querySelector("[data-play-master]");
@@ -10,21 +11,53 @@ const playerTitle = document.querySelector("[data-player-title]");
 const playerProgress = document.querySelector("[data-player-progress]");
 const playerTime = document.querySelector("[data-player-time]");
 let activeReel = reelButtons[0];
+let menuReturnTarget = null;
 
-function closeMenu() {
+function closeMenu(restoreFocus = false) {
   nav.classList.remove("is-open");
   document.body.classList.remove("menu-open");
   menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("aria-label", "Open menu");
+  menuLabel.textContent = "Open menu";
+  if (restoreFocus && menuReturnTarget) menuReturnTarget.focus();
 }
 
 menuButton.addEventListener("click", () => {
   const open = menuButton.getAttribute("aria-expanded") === "true";
+  if (open) {
+    closeMenu(true);
+    return;
+  }
+  menuReturnTarget = document.activeElement;
   menuButton.setAttribute("aria-expanded", String(!open));
+  menuButton.setAttribute("aria-label", "Close menu");
+  menuLabel.textContent = "Close menu";
   nav.classList.toggle("is-open", !open);
   document.body.classList.toggle("menu-open", !open);
+  nav.querySelector("a").focus();
 });
 
-nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => closeMenu(false)));
+
+document.addEventListener("keydown", (event) => {
+  if (!nav.classList.contains("is-open")) return;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeMenu(true);
+    return;
+  }
+
+  if (event.key !== "Tab") return;
+  const focusable = [menuButton, ...nav.querySelectorAll("a")];
+  const currentIndex = focusable.indexOf(document.activeElement);
+  const step = event.shiftKey ? -1 : 1;
+  const nextIndex = currentIndex < 0
+    ? 0
+    : (currentIndex + step + focusable.length) % focusable.length;
+  event.preventDefault();
+  focusable[nextIndex].focus();
+});
 
 function formatTime(seconds) {
   if (!Number.isFinite(seconds)) return "0:00";
@@ -40,13 +73,18 @@ function reflectPlayback() {
   reelButtons.forEach((button) => {
     const icon = button.querySelector("i");
     icon.textContent = button === activeReel && playing ? "❚❚" : "▶";
+    button.setAttribute("aria-label", `${button === activeReel && playing ? "Pause" : "Play"} ${button.dataset.title}`);
   });
 }
 
 function selectReel(button, shouldPlay = true, shouldScroll = false) {
   const changed = activeReel !== button || audio.getAttribute("src") !== button.dataset.src;
   activeReel = button;
-  reelButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+  reelButtons.forEach((item) => {
+    const selected = item === button;
+    item.classList.toggle("is-active", selected);
+    item.setAttribute("aria-pressed", String(selected));
+  });
   playerTitle.textContent = button.dataset.title;
 
   if (changed) {
@@ -65,7 +103,7 @@ function selectReel(button, shouldPlay = true, shouldScroll = false) {
 }
 
 reelButtons.forEach((button) => {
-  button.addEventListener("click", () => selectReel(button, true, true));
+  button.addEventListener("click", () => selectReel(button, true));
 });
 
 masterButton.addEventListener("click", () => {
