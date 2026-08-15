@@ -245,12 +245,13 @@ button, a, input, select, textarea { touch-action: manipulation; }
   .hero-copy { display: contents; }
   .hero-copy > .eyebrow { grid-column: 1 / -1; grid-row: 1; margin-bottom: 14px; font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
   .hero-copy h1 { grid-column: 1 / -1; grid-row: 2; font-size: clamp(58px, 18vw, 70px); line-height: .84; }
-  .hero-intro { z-index: 3; grid-column: 1 / 8; grid-row: 3; width: auto; padding: 0; margin: 26px 0 0; font-size: 16px; line-height: 1.48; }
-  .hero-visual { position: relative; z-index: 2; top: auto; right: auto; grid-column: 1 / -1; grid-row: 3; width: auto; height: 525px; margin: -18px -20px -18px; opacity: 1; }
+  .hero-intro { z-index: 3; grid-column: 1 / -1; grid-row: 3; width: auto; max-width: 350px; padding: 0; margin: 26px 0 0; font-size: 16px; line-height: 1.48; }
+  .hero-visual { position: relative; z-index: 2; top: auto; right: auto; grid-column: 1 / -1; grid-row: 4; width: auto; height: 450px; margin: 8px -20px -18px; opacity: 1; }
   .portrait-frame { inset: 0; border-radius: 48% 48% 10px 10px; }
-  .portrait-frame img { transform: translate(-14px, 176px) scale(1.36); }
-  .hero-actions { grid-column: 1 / -1; grid-row: 4; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: none; margin: 18px 0 0; }
+  .portrait-frame img { width: 100%; height: auto; transform: translate(-7px, 60px) scale(1.22); }
+  .hero-actions { z-index: 4; grid-column: 1 / -1; grid-row: 4; align-self: end; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: none; margin: 0; }
   .hero-actions .button { gap: 8px; padding: 0 12px; font-size: 13px; white-space: nowrap; }
+  .hero-actions .button:not(.button-primary) { background: rgba(247, 241, 234, .94); }
   .hero-actions [data-master-title] { display: none; }
   .button { width: 100%; min-height: 48px; padding: 0 16px; }
   .availability { grid-column: 1 / -1; grid-row: 5; max-width: none; margin: 18px 0 0 2px; }

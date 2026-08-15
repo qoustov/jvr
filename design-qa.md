@@ -1,28 +1,28 @@
-# Design QA — close mobile hero and transcript spacing
+# Design QA — clean mobile hero composition
 
 ## Evidence
 
-- Hero framing reference: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/34C43203-869F-43E3-AC94-2A7EE8CBDBF8/2-Photo-2.jpg`
-- Transcript/client reference: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/34C43203-869F-43E3-AC94-2A7EE8CBDBF8/1-Photo-1.jpg`
-- Mobile hero implementation: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-target-mobile.jpg`
-- Transcript/client implementation: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-transcript-separator-mobile.jpg`
-- Combined hero comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-target-comparison.jpg`
-- Combined divider comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-divider-comparison.jpg`
-- Browser and viewport: in-app browser, 390 × 844 CSS pixels.
-- Normalization: the 827 × 1280 portrait reference was proportionally resized to 390 × 604 and compared with the matching 390 × 604 hero region. The Safari chrome was removed from the transcript reference before its page width was normalized to 390 pixels.
+- Reported iPhone Safari state: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/F03B0B21-59F3-49BD-A446-D7A477AA5A92/1-Photo-1.jpg`
+- Corrected 390 × 844 implementation: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-final-polished-mobile.jpg`
+- Narrow 320 × 780 check: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-final-320.jpg`
+- Combined comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-clean-comparison.jpg`
+- Browser: in-app browser using mobile viewport dimensions.
+- Normalization: Safari chrome was removed from the reference before the app-owned content was resized proportionally to the 390 px implementation width.
 
 ## Findings and fixes
 
-- P1 fixed — the previous mobile portrait remained visibly smaller than the supplied reference. The portrait now uses the full mobile hero width and a 136% crop, matching the reference head, shoulder and torso scale while retaining the original hero asset.
-- P2 fixed — the portrait's center was slightly too far right after enlargement. A small 14 px left correction aligns Jennifer with the reference framing.
-- P2 fixed — the client strip added a second rule beneath the transcript's own bottom border. Removed the client-strip border so the transition now contains one separator only.
-- P2 verified — the closer portrait remains inside the clipped hero frame, the two primary controls retain their full labels, and the page has no accidental horizontal overflow in the 390 px capture.
+- P1 fixed — the biography crossed Jennifer's forehead, eyes and hair. The copy and portrait now occupy separate mobile grid rows, eliminating all text-on-face overlap.
+- P1 fixed — simply stacking the portrait pushed both primary actions below the useful first-screen area. The actions now sit cleanly over the portrait's lower paper area, preserving a compact hero.
+- P2 fixed — the biography's narrow seven-column measure caused unnecessary wrapping. It now uses the full mobile content width with a 350 px readable maximum.
+- P2 fixed — the close portrait crop is retained without the previous oversized transform. The image uses a stable width-led crop at 122%, keeping Jennifer prominent at both 390 px and 320 px.
+- P2 fixed — the secondary action lost contrast where it crossed the black dress. It now has an opaque paper surface while preserving the existing outlined style.
+- P2 verified — the wordmark, menu, heading, biography, portrait, actions and availability remain legible with no horizontal overflow at 320 px or 390 px.
 
-## Asset and behavior safeguards
+## Safeguards
 
-- The original `jennifer-hero-original.webp` is used without reprocessing.
-- The original KidZania video remains unchanged and uncompressed.
-- Desktop hero rules are unchanged; the closer reference crop is scoped to the mobile breakpoint.
-- Existing playback, menu, contact and transcript interactions are unchanged.
+- The original hero asset is reused without reprocessing.
+- Desktop hero styling is unchanged.
+- The KidZania video remains unchanged and uncompressed.
+- Existing navigation, audio, contact and transcript behavior is unchanged.
 
 final result: passed
