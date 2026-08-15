@@ -1,28 +1,23 @@
-# Design QA — clean mobile hero composition
+# Design QA — iPhone 17 Pro Max safe area
 
 ## Evidence
 
-- Reported iPhone Safari state: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/F03B0B21-59F3-49BD-A446-D7A477AA5A92/1-Photo-1.jpg`
-- Corrected 390 × 844 implementation: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-final-polished-mobile.jpg`
-- Narrow 320 × 780 check: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-final-320.jpg`
-- Combined comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-clean-comparison.jpg`
-- Browser: in-app browser using mobile viewport dimensions.
-- Normalization: Safari chrome was removed from the reference before the app-owned content was resized proportionally to the 390 px implementation width.
+- Reported iPhone 17 Pro Max capture: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/EB5AEFC8-5F8F-4888-AC57-FA5EE026EDFB/1-Photo-1.jpg`
+- Local 430 × 932 implementation capture: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-safe-area-430-normal.jpg`
+- Normalized comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-safe-area-comparison.jpg`
+- The supplied 589 px capture was proportionally normalized to the 430 px CSS viewport used for local testing.
 
 ## Findings and fixes
 
-- P1 fixed — the biography crossed Jennifer's forehead, eyes and hair. The copy and portrait now occupy separate mobile grid rows, eliminating all text-on-face overlap.
-- P1 fixed — simply stacking the portrait pushed both primary actions below the useful first-screen area. The actions now sit cleanly over the portrait's lower paper area, preserving a compact hero.
-- P2 fixed — the biography's narrow seven-column measure caused unnecessary wrapping. It now uses the full mobile content width with a 350 px readable maximum.
-- P2 fixed — the close portrait crop is retained without the previous oversized transform. The image uses a stable width-led crop at 122%, keeping Jennifer prominent at both 390 px and 320 px.
-- P2 fixed — the secondary action lost contrast where it crossed the black dress. It now has an opaque paper surface while preserving the existing outlined style.
-- P2 verified — the wordmark, menu, heading, biography, portrait, actions and availability remain legible with no horizontal overflow at 320 px or 390 px.
+- P1 fixed — the wordmark occupied the iOS status-bar region and collided with the clock. Mobile header top padding now includes `env(safe-area-inset-top)`.
+- P1 fixed — moving only the header would make it collide with the eyebrow on notched devices. Mobile hero top padding uses the same safe-area inset, preserving the established header-to-heading spacing.
+- P2 fixed — tablet/landscape header padding now also respects top, left and right safe-area insets.
+- P2 verified — at a zero-inset 430 × 932 viewport, the established hero geometry, portrait crop, actions and player remain unchanged.
+- P2 verified — Jennifer's forehead, eyes, nose, mouth and chin remain fully visible in the supplied 17 Pro Max capture and the local 430 px capture.
 
-## Safeguards
+## Limits
 
-- The original hero asset is reused without reprocessing.
-- Desktop hero styling is unchanged.
-- The KidZania video remains unchanged and uncompressed.
-- Existing navigation, audio, contact and transcript behavior is unchanged.
+- Desktop browser emulation reports zero for iOS environment insets. The CSS uses Apple's standardized runtime safe-area values; final status-bar clearance must be confirmed on the physical 17 Pro Max after deployment.
+- No application asset, content or interaction changed.
 
 final result: passed

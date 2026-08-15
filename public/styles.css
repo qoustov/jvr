@@ -199,7 +199,9 @@ button, a, input, select, textarea { touch-action: manipulation; }
 }
 
 @media (max-width: 900px) {
-  .site-header { padding: 22px 24px; }
+  .site-header {
+    padding: calc(22px + env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) 22px max(24px, env(safe-area-inset-left, 0px));
+  }
   .menu-button { z-index: 22; display: grid; width: 44px; height: 44px; place-content: center; gap: 6px; cursor: pointer; }
   .menu-button span:not(.sr-only) { display: block; width: 24px; height: 1px; background: currentColor; }
   .menu-button span:not(.sr-only) { transition: transform .25s ease; }
@@ -233,13 +235,15 @@ button, a, input, select, textarea { touch-action: manipulation; }
 }
 
 @media (max-width: 620px) {
-  .site-header { padding: 18px 20px; }
+  .site-header {
+    padding: calc(18px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 18px max(20px, env(safe-area-inset-left, 0px));
+  }
   .wordmark { font-size: 16px; }
   .hero {
     display: grid;
     min-height: auto;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    padding: 108px 20px 28px;
+    padding: calc(108px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) 28px max(20px, env(safe-area-inset-left, 0px));
     background: radial-gradient(circle at 72% 36%, #f9d9db 0, #f9d9db 19%, transparent 19.2%), var(--paper);
   }
   .hero-copy { display: contents; }
