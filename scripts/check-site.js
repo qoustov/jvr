@@ -22,6 +22,7 @@ assert(server.includes(`'sha256-${jsonLdHash}'`), "CSP hash does not match the J
 const requiredFiles = [
   "robots.txt",
   "sitemap.xml",
+  "assets/jennifer-hero-original.webp",
   "assets/jennifer-social-card.jpg",
   "assets/video/kidzania-voiceover.mp4",
   "assets/captions/kidzania-en.vtt",
