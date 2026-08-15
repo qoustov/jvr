@@ -3,8 +3,9 @@
 ## Evidence
 
 - Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/3B3AFD97-B774-40F8-8340-3EB5FEB800AE/1-Photo-1.jpg`
-- Implementation capture: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-iphone-fix-mobile-final.jpg`
-- Combined comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-iphone-fix-comparison.jpg`
+- Implementation capture: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-closeup-mobile.jpg`
+- Desktop implementation capture: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-closeup-desktop.jpg`
+- Combined comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jvr-hero-closeup-comparison.jpg`
 - State: mobile hero at page load, audio paused
 - CSS viewport: 390 × 844
 - Source pixels: 589 × 1280, including iPhone Safari chrome
@@ -13,7 +14,7 @@
 
 ## Full-view comparison
 
-The combined comparison confirms that the original composition and content hierarchy remain intact. Jennifer is now larger and positioned closer to the introduction, while both primary actions remain visible without overlap or horizontal overflow.
+The combined comparison confirms that the original composition and content hierarchy remain intact. Jennifer is now unmistakably larger and positioned closer to the introduction on mobile. The desktop capture confirms the same closer crop at the wide breakpoint, while both primary actions remain visible without horizontal overflow.
 
 ## Focused comparison
 
@@ -22,7 +23,7 @@ The hero controls were inspected at readable size in the combined comparison. Th
 ## Findings and iteration history
 
 - P1 fixed — Unicode play and arrow characters rendered as blue Apple emoji in iPhone Safari. Replaced the glyphs with official Bootstrap Icons assets and updated playback state changes to swap play and pause SVG files.
-- P2 fixed — Jennifer's portrait felt detached from the copy. Increased the mobile portrait region from 310 px to 340 px and shifted it 20 px left and 14 px upward.
+- P2 fixed — Jennifer's portrait felt detached from the copy. Increased the mobile portrait region from 310 px to 340 px, shifted it left and upward, then enlarged the image itself to 115% with a small downward correction to preserve the full head. The desktop image is enlarged to 110%.
 - P2 fixed — The first SVG-icon pass caused “Contact Jennifer” to wrap at 390 px. Reduced mobile button spacing and padding and added `white-space: nowrap`; the final capture shows a single-line label.
 
 ## Required fidelity surfaces
