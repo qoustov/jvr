@@ -7,8 +7,11 @@ const publicDir = path.join(__dirname, "public");
 const types = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
+  ".jpg": "image/jpeg",
   ".js": "text/javascript; charset=utf-8",
   ".mp3": "audio/mpeg",
+  ".mp4": "video/mp4",
+  ".png": "image/png",
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
 };
@@ -43,7 +46,7 @@ const server = http.createServer((req, res) => {
 
     const contentType = types[path.extname(resolved)] || "application/octet-stream";
     const range = req.headers.range;
-    if (range && contentType.startsWith("audio/")) {
+    if (range && (contentType.startsWith("audio/") || contentType.startsWith("video/"))) {
       const match = /^bytes=(\d*)-(\d*)$/.exec(range);
       if (!match) return send(res, 416, "Invalid range", "text/plain; charset=utf-8");
       const start = match[1] ? Number(match[1]) : 0;
