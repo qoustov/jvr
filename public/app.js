@@ -84,16 +84,16 @@ function formatTime(seconds) {
 function reflectPlayback() {
   const playing = !audio.paused;
   player.classList.toggle("is-playing", playing);
-  playerIcon.textContent = playing ? "❚❚" : "▶";
-  masterIcon.textContent = playing ? "❚❚" : "▶";
+  playerIcon.src = playing ? "/assets/icons/pause-fill.svg" : "/assets/icons/play-fill.svg";
+  masterIcon.src = playing ? "/assets/icons/pause-fill.svg" : "/assets/icons/play-fill.svg";
   masterAction.textContent = playing ? "Pause" : "Play";
   masterTitle.textContent = activeReel.dataset.title;
   masterButton.setAttribute("aria-pressed", String(playing));
   masterButton.setAttribute("aria-label", `${playing ? "Pause" : "Play"} ${activeReel.dataset.title}`);
   playerToggle.setAttribute("aria-label", `${playing ? "Pause" : "Play"} ${activeReel.dataset.title}`);
   reelButtons.forEach((button) => {
-    const icon = button.querySelector("i");
-    icon.textContent = button === activeReel && playing ? "❚❚" : "▶";
+    const icon = button.querySelector("i img");
+    icon.src = button === activeReel && playing ? "/assets/icons/pause-fill.svg" : "/assets/icons/play-fill.svg";
     button.setAttribute("aria-label", `${button === activeReel && playing ? "Pause" : "Play"} ${button.dataset.title}`);
   });
 }

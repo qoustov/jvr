@@ -24,6 +24,12 @@ const requiredFiles = [
   "sitemap.xml",
   "assets/jennifer-hero-original.webp",
   "assets/jennifer-social-card.jpg",
+  "assets/icons/play-fill.svg",
+  "assets/icons/pause-fill.svg",
+  "assets/icons/arrow-up-right.svg",
+  "assets/icons/arrow-down-right.svg",
+  "assets/icons/chevron-left.svg",
+  "assets/icons/chevron-right.svg",
   "assets/video/kidzania-voiceover.mp4",
   "assets/captions/kidzania-en.vtt",
 ];
