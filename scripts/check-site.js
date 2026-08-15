@@ -24,6 +24,7 @@ const requiredFiles = [
   "sitemap.xml",
   "assets/jennifer-social-card.jpg",
   "assets/video/kidzania-voiceover.mp4",
+  "assets/captions/kidzania-en.vtt",
 ];
 requiredFiles.forEach((file) => assert(fs.existsSync(path.join(publicDir, file)), `Missing ${file}`));
 
@@ -38,6 +39,7 @@ const thumbnailDir = path.join(publicDir, "assets", "gallery", "thumbs");
 const thumbnails = fs.readdirSync(thumbnailDir).filter((file) => file.endsWith(".jpg"));
 assert(thumbnails.length === 8, "Expected eight gallery thumbnails");
 assert(fs.statSync(path.join(publicDir, "assets", "video", "kidzania-voiceover.mp4")).size === 31431785, "Original video size changed");
+assert(index.includes('<track kind="captions" src="/assets/captions/kidzania-en.vtt"'), "KidZania video is missing English captions");
 
 const robots = fs.readFileSync(path.join(publicDir, "robots.txt"), "utf8");
 const sitemap = fs.readFileSync(path.join(publicDir, "sitemap.xml"), "utf8");
