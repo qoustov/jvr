@@ -133,7 +133,7 @@ h1 em, h2 em { color: var(--coral); font-weight: 400; }
 .gallery .section-heading { grid-template-columns: 1fr 2.5fr; }
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .gallery-item { display: block; min-width: 0; padding: 0; border: 0; background: none; cursor: zoom-in; }
-.gallery-item img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; object-position: center 18%; transition: filter .25s ease, transform .25s ease; }
+.gallery-item img { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; object-position: center 18%; transition: filter .25s ease, transform .25s ease; }
 .gallery-item:hover img { filter: saturate(.85); transform: scale(.985); }
 .gallery-item:nth-child(4n + 2), .gallery-item:nth-child(4n + 4) { margin-top: 54px; }
 .gallery-toggle { display: none; margin: 42px auto 0; }
@@ -224,14 +224,34 @@ button, a, input, select, textarea { touch-action: manipulation; }
 }
 
 @media (max-width: 620px) {
-  .hero { padding-bottom: 180px; }
-  .hero-intro { width: 100%; padding-right: 34%; }
-  .hero-visual { top: 260px; right: -104px; width: 70vw; height: 380px; opacity: .95; }
-  .hero-actions { max-width: 240px; flex-direction: column; align-items: stretch; }
-  .button { width: 100%; }
-  .availability { max-width: 210px; }
-  .master-player { grid-template-columns: 44px 1fr; }
+  .site-header { padding: 18px 20px; }
+  .wordmark { font-size: 16px; }
+  .hero {
+    display: grid;
+    min-height: auto;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding: 108px 20px 28px;
+    background: radial-gradient(circle at 72% 36%, #f9d9db 0, #f9d9db 19%, transparent 19.2%), var(--paper);
+  }
+  .hero-copy { display: contents; }
+  .hero-copy > .eyebrow { grid-column: 1 / -1; grid-row: 1; margin-bottom: 14px; font-size: 10px; letter-spacing: .12em; white-space: nowrap; }
+  .hero-copy h1 { grid-column: 1 / -1; grid-row: 2; font-size: clamp(58px, 18vw, 70px); line-height: .84; }
+  .hero-intro { z-index: 3; grid-column: 1 / 8; grid-row: 3; width: auto; padding: 0; margin: 26px 0 0; font-size: 16px; line-height: 1.48; }
+  .hero-visual { position: relative; z-index: 2; top: auto; right: auto; grid-column: 7 / -1; grid-row: 3; width: auto; height: 310px; margin: 4px -8px 0 -22px; opacity: 1; }
+  .portrait-frame { inset: 0; border-radius: 48% 48% 10px 10px; }
+  .hero-actions { grid-column: 1 / -1; grid-row: 4; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: none; margin: 18px 0 0; }
+  .hero-actions [data-master-title] { display: none; }
+  .button { width: 100%; min-height: 48px; padding: 0 16px; }
+  .availability { grid-column: 1 / -1; grid-row: 5; max-width: none; margin: 18px 0 0 2px; }
+  .master-player { position: relative; right: auto; bottom: auto; left: auto; grid-column: 1 / -1; grid-row: 6; grid-template-columns: 44px minmax(0, 1fr); width: auto; margin-top: 24px; padding: 13px 14px; }
+  .player-track { min-width: 0; }
   .player-time { grid-column: 1 / -1; grid-row: 3; text-align: left; }
+  .player-progress { min-width: 0; grid-column: 1 / -1; grid-row: 2; }
+  .player-progress input { min-width: 0; }
+  .section { padding: 64px 20px; }
+  .section-heading { gap: 16px; margin-bottom: 48px; }
+  .section-heading h2 { font-size: clamp(42px, 13vw, 50px); line-height: .94; }
+  .section-heading .eyebrow { margin-bottom: 0; }
   .reel { grid-template-columns: 40px 1fr 44px; gap: 10px; }
   .reel > span:nth-child(3) { display: none; }
   .reel-cta { align-items: stretch; flex-direction: column; }
@@ -255,7 +275,10 @@ button, a, input, select, textarea { touch-action: manipulation; }
   .lightbox-prev { left: 18px; }
   .lightbox-next { right: 18px; }
   .lightbox figcaption { padding: 0 54px; }
-  .contact-layout { margin-top: 52px; padding-top: 38px; }
+  .contact { padding-top: 64px; }
+  .contact h2 { max-width: 100%; margin-inline: auto; font-size: clamp(48px, 15vw, 58px); line-height: .88; text-wrap: balance; }
+  .contact-copy { margin-top: 28px; }
+  .contact-layout { margin-top: 40px; padding-top: 32px; }
   .enquiry-form { grid-template-columns: 1fr; }
   .field-wide { grid-column: auto; }
   .form-submit { align-items: stretch; flex-direction: column; }

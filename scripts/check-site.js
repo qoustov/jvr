@@ -43,6 +43,6 @@ const robots = fs.readFileSync(path.join(publicDir, "robots.txt"), "utf8");
 const sitemap = fs.readFileSync(path.join(publicDir, "sitemap.xml"), "utf8");
 assert(robots.includes("https://jennifer-victoria.com/sitemap.xml"), "robots.txt is missing the sitemap URL");
 assert(sitemap.includes("<loc>https://jennifer-victoria.com/</loc>"), "Sitemap is missing the canonical URL");
-assert(index.includes("/styles.css?v=phase4-1") && index.includes("/app.js?v=phase4-1"), "Phase 4 assets must be versioned");
+assert(/\/styles\.css\?v=[\w-]+/.test(index) && /\/app\.js\?v=[\w-]+/.test(index), "Site assets must be versioned");
 
 console.log("Site metadata, assets and media invariants are valid.");
