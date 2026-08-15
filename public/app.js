@@ -19,11 +19,15 @@ const galleryToggle = document.querySelector("[data-gallery-toggle]");
 const lightbox = document.querySelector("[data-lightbox]");
 const lightboxImage = document.querySelector("[data-lightbox-image]");
 const lightboxCaption = document.querySelector("[data-lightbox-caption]");
+const workVideoFrame = document.querySelector("[data-work-video-frame]");
+const workVideo = document.querySelector("[data-work-video]");
+const videoCover = document.querySelector("[data-video-cover]");
 const enquiryForm = document.querySelector("[data-enquiry-form]");
 let activeReel = reelButtons[0];
 let menuReturnTarget = null;
 let activeGalleryIndex = 0;
 let galleryReturnTarget = null;
+let lightboxTouchStartX = null;
 
 function closeMenu(restoreFocus = false) {
   nav.classList.remove("is-open");
@@ -194,6 +198,22 @@ lightbox.addEventListener("cancel", (event) => {
   lightbox.close();
 });
 lightbox.addEventListener("close", () => galleryReturnTarget?.focus());
+lightbox.addEventListener("touchstart", (event) => {
+  lightboxTouchStartX = event.changedTouches[0]?.clientX ?? null;
+}, { passive: true });
+lightbox.addEventListener("touchend", (event) => {
+  if (lightboxTouchStartX === null) return;
+  const distance = (event.changedTouches[0]?.clientX ?? lightboxTouchStartX) - lightboxTouchStartX;
+  lightboxTouchStartX = null;
+  if (Math.abs(distance) < 56) return;
+  showGalleryImage(activeGalleryIndex + (distance < 0 ? 1 : -1));
+}, { passive: true });
+
+videoCover.addEventListener("click", () => {
+  workVideoFrame.classList.add("is-video-active");
+  workVideo.play().catch(() => workVideoFrame.classList.remove("is-video-active"));
+});
+workVideo.addEventListener("ended", () => workVideoFrame.classList.remove("is-video-active"));
 
 function buildEnquiryMailto(formData) {
   const projectType = formData.get("projectType");
