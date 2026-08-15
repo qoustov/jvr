@@ -10,8 +10,17 @@ const playerIcon = document.querySelector("[data-player-icon]");
 const playerTitle = document.querySelector("[data-player-title]");
 const playerProgress = document.querySelector("[data-player-progress]");
 const playerTime = document.querySelector("[data-player-time]");
+const galleryGrid = document.querySelector("[data-gallery-grid]");
+const galleryItems = [...document.querySelectorAll("[data-gallery-item]")];
+const galleryToggle = document.querySelector("[data-gallery-toggle]");
+const lightbox = document.querySelector("[data-lightbox]");
+const lightboxImage = document.querySelector("[data-lightbox-image]");
+const lightboxCaption = document.querySelector("[data-lightbox-caption]");
+const enquiryForm = document.querySelector("[data-enquiry-form]");
 let activeReel = reelButtons[0];
 let menuReturnTarget = null;
+let activeGalleryIndex = 0;
+let galleryReturnTarget = null;
 
 function closeMenu(restoreFocus = false) {
   nav.classList.remove("is-open");
@@ -128,6 +137,72 @@ audio.addEventListener("loadedmetadata", () => {
 });
 playerProgress.addEventListener("input", () => {
   if (Number.isFinite(audio.duration)) audio.currentTime = (Number(playerProgress.value) / 1000) * audio.duration;
+});
+
+function showGalleryImage(index) {
+  activeGalleryIndex = (index + galleryItems.length) % galleryItems.length;
+  const item = galleryItems[activeGalleryIndex];
+  const sourceImage = item.querySelector("img");
+  lightboxImage.src = sourceImage.src;
+  lightboxImage.alt = sourceImage.alt;
+  lightboxCaption.textContent = `${activeGalleryIndex + 1} / ${galleryItems.length} — ${item.dataset.caption}`;
+}
+
+galleryItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    galleryReturnTarget = item;
+    showGalleryImage(index);
+    lightbox.showModal();
+    lightbox.querySelector("[data-lightbox-close]").focus();
+  });
+});
+
+galleryToggle.addEventListener("click", () => {
+  const expanded = galleryGrid.classList.toggle("is-expanded");
+  galleryToggle.setAttribute("aria-expanded", String(expanded));
+  galleryToggle.textContent = expanded ? "Show fewer photographs" : "View all 8 photographs";
+});
+
+lightbox.querySelector("[data-lightbox-close]").addEventListener("click", () => lightbox.close());
+lightbox.querySelector("[data-lightbox-prev]").addEventListener("click", () => showGalleryImage(activeGalleryIndex - 1));
+lightbox.querySelector("[data-lightbox-next]").addEventListener("click", () => showGalleryImage(activeGalleryIndex + 1));
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) lightbox.close();
+});
+lightbox.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    lightbox.close();
+    return;
+  }
+  if (event.key === "ArrowLeft") showGalleryImage(activeGalleryIndex - 1);
+  if (event.key === "ArrowRight") showGalleryImage(activeGalleryIndex + 1);
+});
+lightbox.addEventListener("cancel", (event) => {
+  event.preventDefault();
+  lightbox.close();
+});
+lightbox.addEventListener("close", () => galleryReturnTarget?.focus());
+
+function buildEnquiryMailto(formData) {
+  const projectType = formData.get("projectType");
+  const lines = [
+    `Project type: ${projectType}`,
+    `Usage / medium: ${formData.get("usage") || "Not specified"}`,
+    `Deadline: ${formData.get("deadline") || "Not specified"}`,
+    `Live direction: ${formData.get("liveDirection")}`,
+    "",
+    "Project details:",
+    formData.get("message"),
+  ];
+  const subject = encodeURIComponent(`Project enquiry — ${projectType}`);
+  const body = encodeURIComponent(lines.join("\n"));
+  return `mailto:jivaruka@gmail.com?subject=${subject}&body=${body}`;
+}
+
+enquiryForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  window.location.href = buildEnquiryMailto(new FormData(enquiryForm));
 });
 
 const observer = new IntersectionObserver((entries) => {
