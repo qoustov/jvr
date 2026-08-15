@@ -3,6 +3,9 @@ const menuLabel = document.querySelector("[data-menu-label]");
 const nav = document.querySelector("[data-nav]");
 const reelButtons = [...document.querySelectorAll("[data-reel]")];
 const masterButton = document.querySelector("[data-play-master]");
+const masterIcon = masterButton.querySelector(".play-icon");
+const masterAction = document.querySelector("[data-master-action]");
+const masterTitle = document.querySelector("[data-master-title]");
 const audio = document.querySelector("[data-audio-player]");
 const player = document.querySelector("[data-master-player]");
 const playerToggle = document.querySelector("[data-player-toggle]");
@@ -78,6 +81,11 @@ function reflectPlayback() {
   const playing = !audio.paused;
   player.classList.toggle("is-playing", playing);
   playerIcon.textContent = playing ? "❚❚" : "▶";
+  masterIcon.textContent = playing ? "❚❚" : "▶";
+  masterAction.textContent = playing ? "Pause" : "Play";
+  masterTitle.textContent = activeReel.dataset.title;
+  masterButton.setAttribute("aria-pressed", String(playing));
+  masterButton.setAttribute("aria-label", `${playing ? "Pause" : "Play"} ${activeReel.dataset.title}`);
   playerToggle.setAttribute("aria-label", `${playing ? "Pause" : "Play"} ${activeReel.dataset.title}`);
   reelButtons.forEach((button) => {
     const icon = button.querySelector("i");
@@ -95,6 +103,7 @@ function selectReel(button, shouldPlay = true, shouldScroll = false) {
     item.setAttribute("aria-pressed", String(selected));
   });
   playerTitle.textContent = button.dataset.title;
+  masterTitle.textContent = button.dataset.title;
 
   if (changed) {
     audio.src = button.dataset.src;
@@ -131,9 +140,11 @@ audio.addEventListener("timeupdate", () => {
   const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
   playerProgress.value = duration ? Math.round((audio.currentTime / duration) * 1000) : 0;
   playerTime.textContent = `${formatTime(audio.currentTime)} / ${formatTime(duration)}`;
+  playerProgress.setAttribute("aria-valuetext", `${formatTime(audio.currentTime)} of ${formatTime(duration)}`);
 });
 audio.addEventListener("loadedmetadata", () => {
   playerTime.textContent = `0:00 / ${formatTime(audio.duration)}`;
+  playerProgress.setAttribute("aria-valuetext", `0:00 of ${formatTime(audio.duration)}`);
 });
 playerProgress.addEventListener("input", () => {
   if (Number.isFinite(audio.duration)) audio.currentTime = (Number(playerProgress.value) / 1000) * audio.duration;
@@ -143,7 +154,7 @@ function showGalleryImage(index) {
   activeGalleryIndex = (index + galleryItems.length) % galleryItems.length;
   const item = galleryItems[activeGalleryIndex];
   const sourceImage = item.querySelector("img");
-  lightboxImage.src = sourceImage.src;
+  lightboxImage.src = sourceImage.dataset.fullSrc || sourceImage.src;
   lightboxImage.alt = sourceImage.alt;
   lightboxCaption.textContent = `${activeGalleryIndex + 1} / ${galleryItems.length} — ${item.dataset.caption}`;
 }
