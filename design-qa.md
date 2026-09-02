@@ -60,4 +60,14 @@
 - Comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/gallery-order-comparison.jpg`.
 - Final captures: `gallery-order-desktop.png`, `gallery-order-desktop-final-lower.png`, `gallery-order-mobile-collapsed.png`, `gallery-order-mobile-expanded.png`, and `gallery-order-mobile-lower.png` in the same review folder.
 
+### Contact block density
+
+- Removed the helper sentence beneath the enquiry button and its now-unused `aria-describedby` reference.
+- Replaced the stretched contact card with a compact, content-sized panel aligned to the end of the desktop form.
+- Preserved the icon-only contact treatment while reducing icon and spacing scale for a tighter visual group.
+- On mobile the heading and icon row stack within a short panel; the contact section no longer contains the large empty vertical area shown in the reference.
+- Verified at 1280 × 900 and 390 × 844, including the transition into the footer.
+- Comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/contact-layout-comparison.jpg`.
+- Final captures: `contact-desktop-compact.png` and `contact-mobile-compact.png` in the same review folder.
+
 final result: passed
