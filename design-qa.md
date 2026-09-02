@@ -49,4 +49,15 @@
 - Verified gallery item 8 in the mobile lightbox with the correct red microphone image and updated accessible caption.
 - QA captures: `about-mobile-swapped.png` and `gallery-mobile-item-8-swapped.png` in the photography review folder.
 
+### Gallery curation and colour sequence
+
+- Removed the hero portrait (`IMG_3987`) from the gallery, leaving 16 distinct gallery images.
+- Reordered the collection to alternate monochrome, vivid red, neutral studio and dark cinematic frames instead of clustering similar backgrounds.
+- The four-photo mobile preview now opens with a deliberate sequence: monochrome, red performance, neutral black look and warm studio portrait.
+- The three-column desktop composition distributes red and dark images across the grid; the final unpaired tile is centred so the sequence ends intentionally.
+- The two-column mobile grid remains complete with eight balanced rows and no forced column override.
+- Verified desktop at 1280 px and mobile at 390 × 844, including collapsed and expanded mobile states.
+- Comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/gallery-order-comparison.jpg`.
+- Final captures: `gallery-order-desktop.png`, `gallery-order-desktop-final-lower.png`, `gallery-order-mobile-collapsed.png`, `gallery-order-mobile-expanded.png`, and `gallery-order-mobile-lower.png` in the same review folder.
+
 final result: passed
