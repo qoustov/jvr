@@ -258,7 +258,7 @@ button, a, input, select, textarea { touch-action: manipulation; }
   .hero-actions .button:not(.button-primary) { background: rgba(247, 241, 234, .94); }
   .hero-actions [data-master-title] { display: none; }
   .button { width: 100%; min-height: 48px; padding: 0 16px; }
-  .availability { grid-column: 1 / -1; grid-row: 5; max-width: none; margin: 18px 0 0 2px; }
+  .availability { grid-column: 1 / -1; grid-row: 5; max-width: none; margin: 26px 0 0 2px; }
   .master-player { position: relative; right: auto; bottom: auto; left: auto; grid-column: 1 / -1; grid-row: 6; grid-template-columns: 44px minmax(0, 1fr); width: auto; margin-top: 24px; padding: 13px 14px; }
   .player-track { min-width: 0; }
   .player-time { grid-column: 1 / -1; grid-row: 3; text-align: left; }

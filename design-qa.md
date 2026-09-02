@@ -72,6 +72,24 @@
 
 final result: passed
 
+### Default reel and mobile availability spacing
+
+- Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/DE7C9737-284B-48DE-B052-E8344B757F75/1-Photo-1.jpg` (1280 × 853 screenshot).
+- Browser-rendered implementation: `http://127.0.0.1:3003/?default-reel=qa#top`, inspected in the Codex in-app browser at 390 × 844 CSS px.
+- State: initial hero and active playback state at 1.93 seconds.
+- Promoted `Warm and Whimsical Read` from position 4 to position 1 and made it the initial hero and player selection.
+- Moved `Tech / Instructional` to position 4 so all six unique recordings remain present.
+- Updated the initial player duration to `0:26`, matching the selected recording instead of briefly displaying `0:00`.
+- Increased the mobile gap above the availability line by 8 px, separating it from the overlaid hero actions without changing desktop spacing.
+- Full-view comparison: hero composition, portrait crop and action placement remain unchanged; only the requested spacing and initial reel content differ.
+- Focused-region comparison: the availability margin is 26 px, the player shows `Warm and Whimsical Read`, and playback reports a 26.28-second duration.
+- Typography, colors and image assets are unchanged; the existing hierarchy and tokens remain consistent.
+- Copy and accessibility: the hero and player labels now identify the same selected demo, and the active button changes to `Pause Warm and Whimsical Read`.
+- Findings: no actionable P0, P1 or P2 issues remain; no console errors were recorded.
+- Comparison history: pass 1 corrected the default reel, initial duration and availability spacing; the mobile initial and playing states both passed.
+
+final result: passed
+
 ### Contact icon simplification
 
 - Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/EA74F6BD-53B3-43AF-982C-573775A65255/1-Photo-1.jpg` (1280 × 720 screenshot).
