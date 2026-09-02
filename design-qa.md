@@ -41,4 +41,12 @@
 - The KidZania source video remains unmodified at 31,431,785 bytes.
 - `npm run check` and `git diff --check` pass.
 
+### Requested photo swap
+
+- The black-and-white chair portrait (`IMG_3981`) now leads the About section and occupies gallery position 1.
+- The red microphone portrait (`IMG_6258`) now occupies gallery position 8, preserving all 17 unique gallery photographs.
+- Verified at 390 × 844: the About crop contains Jennifer's full face and the chair portrait reads cleanly above the heading.
+- Verified gallery item 8 in the mobile lightbox with the correct red microphone image and updated accessible caption.
+- QA captures: `about-mobile-swapped.png` and `gallery-mobile-item-8-swapped.png` in the photography review folder.
+
 final result: passed
