@@ -81,6 +81,23 @@ function formatTime(seconds) {
   return `${minutes}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
 }
 
+function declaredDurationSeconds() {
+  const [minutes, seconds] = activeReel.dataset.duration.split(":").map(Number);
+  return (minutes * 60) + seconds;
+}
+
+function playbackDuration() {
+  return Number.isFinite(audio.duration) && audio.duration > 0
+    ? audio.duration
+    : declaredDurationSeconds();
+}
+
+function playbackDurationLabel() {
+  return Number.isFinite(audio.duration) && audio.duration > 0
+    ? formatTime(audio.duration)
+    : activeReel.dataset.duration;
+}
+
 function reflectPlayback() {
   const playing = !audio.paused;
   player.classList.toggle("is-playing", playing);
@@ -141,14 +158,16 @@ audio.addEventListener("play", reflectPlayback);
 audio.addEventListener("pause", reflectPlayback);
 audio.addEventListener("ended", reflectPlayback);
 audio.addEventListener("timeupdate", () => {
-  const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+  const duration = playbackDuration();
+  const durationLabel = playbackDurationLabel();
   playerProgress.value = duration ? Math.round((audio.currentTime / duration) * 1000) : 0;
-  playerTime.textContent = `${formatTime(audio.currentTime)} / ${formatTime(duration)}`;
-  playerProgress.setAttribute("aria-valuetext", `${formatTime(audio.currentTime)} of ${formatTime(duration)}`);
+  playerTime.textContent = `${formatTime(audio.currentTime)} / ${durationLabel}`;
+  playerProgress.setAttribute("aria-valuetext", `${formatTime(audio.currentTime)} of ${durationLabel}`);
 });
 audio.addEventListener("loadedmetadata", () => {
-  playerTime.textContent = `0:00 / ${formatTime(audio.duration)}`;
-  playerProgress.setAttribute("aria-valuetext", `0:00 of ${formatTime(audio.duration)}`);
+  const durationLabel = playbackDurationLabel();
+  playerTime.textContent = `0:00 / ${durationLabel}`;
+  playerProgress.setAttribute("aria-valuetext", `0:00 of ${durationLabel}`);
 });
 playerProgress.addEventListener("input", () => {
   if (Number.isFinite(audio.duration)) audio.currentTime = (Number(playerProgress.value) / 1000) * audio.duration;

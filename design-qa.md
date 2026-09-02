@@ -72,6 +72,18 @@
 
 final result: passed
 
+### Voice-reel duration reliability
+
+- Verified the source MP3 durations with macOS audio metadata: Girly and Glam `29.86s`, Cozy and Warm `70.85s`, Emotional / Dramatic `41.51s`, Tech / Instructional `40.94s`, Sassy and Fun `59.78s`, and Warm and Whimsical `26.31s`.
+- Confirmed every visible duration label matches the corresponding recording when formatted with the player's whole-second convention.
+- Production diagnosis: Cloudflare returned cached `200` responses for MP3 Range requests, while the linked Railway media host returned correct `206 Partial Content` responses.
+- Kept all six audio sources on the canonical site origin so iOS playback remains first-party and reliable.
+- Added a declared-duration fallback so Safari never replaces a valid total with `0:00` while metadata is unavailable or delayed.
+- Browser-tested every reel at 390 × 844: each control entered its `Pause` state and displayed the expected non-zero total (`0:29`, `1:10`, `0:41`, `0:40`, `0:59`, `0:26`).
+- Confirmed the elapsed timer advances during playback (`0:09 / 0:26`) and no console errors were recorded.
+
+final result: passed
+
 ### Girly and Glam default reel
 
 - Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/DB36D766-B52E-4E05-888A-67DE5EFBC7FF/1-Photo-1.jpg` (1280 × 368 screenshot).
