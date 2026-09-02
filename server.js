@@ -26,7 +26,7 @@ function isCanonicalHost(req) {
 
 function securityHeaders(req) {
   return {
-    "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self'; script-src 'self' 'sha256-remXwjkVkGr6yV2aszLTrSbtKfpiIbpMKak79x59O/Y='; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data:; media-src 'self' https://jvr.up.railway.app; style-src 'self'; script-src 'self' 'sha256-remXwjkVkGr6yV2aszLTrSbtKfpiIbpMKak79x59O/Y='; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'",
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
     "X-Content-Type-Options": "nosniff",

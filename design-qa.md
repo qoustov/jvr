@@ -78,6 +78,7 @@ final result: passed
 - Added inline playback support and made the custom mobile cover disappear only after playback actually starts.
 - MP4 responses now use `Cache-Control: no-store`, preventing a cached full-file response from replacing Safari's required byte-range response.
 - Versioned the video request so the first corrected deployment bypasses the stale CDN object immediately.
+- Production verification found Cloudflare removes the `Range` request on the custom domain; the video source therefore uses the linked Railway media URL, which preserves `206 Partial Content`, while the public site remains on the canonical domain.
 - Verified the local media endpoint returns `206 Partial Content`, `Content-Range: bytes 0-1023/31431785` and `Cache-Control: no-store`.
 - Exercised the mobile cover in-browser: playback reached 2.4 seconds with `paused: false`, `readyState: 4` and no media error.
 - Comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/kidzania-poster-comparison.jpg`.
