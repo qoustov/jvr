@@ -72,6 +72,26 @@
 
 final result: passed
 
+### Contact icon simplification
+
+- Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/EA74F6BD-53B3-43AF-982C-573775A65255/1-Photo-1.jpg` (1280 × 720 screenshot).
+- Browser-rendered implementation: `http://127.0.0.1:3003/?contact-icons=qa#contact`, inspected in the Codex in-app browser at 390 × 844 CSS px and 1280 × 900 CSS px.
+- State: bottom of the contact form, default links, no hover or focus state active.
+- Removed the visible `Direct contact` heading, rectangular panel, border and tinted panel background.
+- Kept all four accessible contact links as a compact icon-only row directly on the pink section background.
+- Reduced the desktop contact column to the row's natural width; mobile centres the icons beneath the enquiry form.
+- Full-view comparison: the large pale rectangle and excess internal padding in the source are gone; the form-to-footer transition is shorter and visually cleaner.
+- Focused-region comparison: the four source icons, their order and accessible destinations are preserved; only the enclosing rectangle and heading were removed, as requested.
+- Typography: no contact heading remains; surrounding form labels and button typography are unchanged.
+- Spacing and layout: desktop icons align with the enquiry action; mobile uses a centred 12 px-gap row with 52 px touch targets and no horizontal overflow.
+- Colors and tokens: icons and outlines continue to use the existing ink token directly on the pink section background.
+- Asset fidelity: the existing icon assets are unchanged; no placeholder, CSS-drawn or substitute icons were introduced.
+- Copy and content: no visible contact copy remains, while `aria-label` text preserves the purpose of every link for assistive technology.
+- Findings: no actionable P0, P1 or P2 differences remain. No additional focused crop was needed because all four icons are legible at both tested sizes.
+- Comparison history: the source showed a large bordered card; pass 1 removed it and passed at both responsive sizes without further visual fixes.
+
+final result: passed
+
 ### KidZania video playback and poster
 
 - Replaced the preview with the supplied landscape piano portrait; Jennifer's full face remains visible in the 16:9 work frame at 390 × 844.
