@@ -71,3 +71,16 @@
 - Final captures: `contact-desktop-compact.png` and `contact-mobile-compact.png` in the same review folder.
 
 final result: passed
+
+### KidZania video playback and poster
+
+- Replaced the preview with the supplied landscape piano portrait; Jennifer's full face remains visible in the 16:9 work frame at 390 × 844.
+- Added inline playback support and made the custom mobile cover disappear only after playback actually starts.
+- MP4 responses now use `Cache-Control: no-store`, preventing a cached full-file response from replacing Safari's required byte-range response.
+- Versioned the video request so the first corrected deployment bypasses the stale CDN object immediately.
+- Verified the local media endpoint returns `206 Partial Content`, `Content-Range: bytes 0-1023/31431785` and `Cache-Control: no-store`.
+- Exercised the mobile cover in-browser: playback reached 2.4 seconds with `paused: false`, `readyState: 4` and no media error.
+- Comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/kidzania-poster-comparison.jpg`.
+- The original KidZania MP4 remains unmodified at 31,431,785 bytes.
+
+final result: passed

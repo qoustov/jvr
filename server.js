@@ -47,6 +47,9 @@ function send(req, res, status, body, contentType, cacheControl = "no-store", ex
 
 function cacheControlFor(url, resolved) {
   if (path.basename(resolved) === "index.html") return "no-cache";
+  // Let the origin answer Safari's byte-range requests directly. Caching the
+  // complete MP4 at the CDN can turn later range requests into a 200 response.
+  if (path.extname(resolved) === ".mp4") return "no-store";
   if (url.searchParams.has("v")) return "public, max-age=31536000, immutable";
   if (resolved.includes(`${path.sep}assets${path.sep}`)) return "public, max-age=604800, stale-while-revalidate=86400";
   return "public, max-age=3600";

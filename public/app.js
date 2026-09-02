@@ -209,11 +209,18 @@ lightbox.addEventListener("touchend", (event) => {
   showGalleryImage(activeGalleryIndex + (distance < 0 ? 1 : -1));
 }, { passive: true });
 
-videoCover.addEventListener("click", () => {
-  workVideoFrame.classList.add("is-video-active");
-  workVideo.play().catch(() => workVideoFrame.classList.remove("is-video-active"));
+videoCover.addEventListener("click", async () => {
+  try {
+    await workVideo.play();
+    workVideoFrame.classList.add("is-video-active");
+  } catch {
+    workVideoFrame.classList.remove("is-video-active");
+    workVideo.controls = true;
+  }
 });
+workVideo.addEventListener("playing", () => workVideoFrame.classList.add("is-video-active"));
 workVideo.addEventListener("ended", () => workVideoFrame.classList.remove("is-video-active"));
+workVideo.addEventListener("error", () => workVideoFrame.classList.remove("is-video-active"));
 
 function buildEnquiryMailto(formData) {
   const projectType = formData.get("projectType");
