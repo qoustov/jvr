@@ -20,4 +20,25 @@
 - Desktop browser emulation reports zero for iOS environment insets. The CSS uses Apple's standardized runtime safe-area values; final status-bar clearance must be confirmed on the physical 17 Pro Max after deployment.
 - No application asset, content or interaction changed.
 
+## Photography refresh — Downloads/Jenn
+
+### Source and implementation evidence
+
+- Source contact sheet: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/contact-sheet.jpg`
+- Source-to-site comparison: `/Users/madbeam/.codex/visualizations/2026/08/15/01a005cb-22e1-7622-967d-c6a50306d649/jenn-photo-review/source-to-site-comparison.jpg`
+- Desktop captures: `hero-desktop.png`, `about-desktop.png`, `gallery-desktop.png` in the same review folder.
+- Mobile captures: `hero-mobile.png`, `about-mobile.png`, `gallery-mobile-expanded.png` and `gallery-mobile-lightbox.png` in the same review folder.
+
+### Decisions and checks
+
+- All 17 supplied photographs are represented in the portrait gallery; no previous headshot or portrait is referenced by the page.
+- The hero uses `IMG_3987`, selected for direct eye contact, neutral styling and sufficient crop room on narrow screens.
+- The About section pairs the red microphone performance image (`IMG_6258`) with the black-and-white grand-piano image (`IMG_6272`) to communicate both vocal and musical work.
+- The KidZania image remains its genuine video preview rather than a portrait, so the work card continues to represent the media it opens.
+- Desktop and 390 × 844 mobile captures were inspected. Jennifer's face is fully visible in the hero at both widths, text does not cross her face, and the mobile actions remain reachable.
+- The gallery's four-image mobile preview, 17-image expanded state and full-image dialog were all exercised successfully.
+- The supplied originals remain untouched in `Downloads/Jenn`. Site assets use full-size and thumbnail WebP derivatives for responsive loading.
+- The KidZania source video remains unmodified at 31,431,785 bytes.
+- `npm run check` and `git diff --check` pass.
+
 final result: passed

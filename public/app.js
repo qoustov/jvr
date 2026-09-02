@@ -175,7 +175,7 @@ galleryItems.forEach((item, index) => {
 galleryToggle.addEventListener("click", () => {
   const expanded = galleryGrid.classList.toggle("is-expanded");
   galleryToggle.setAttribute("aria-expanded", String(expanded));
-  galleryToggle.textContent = expanded ? "Show fewer photographs" : "View all 8 photographs";
+  galleryToggle.textContent = expanded ? "Show fewer photographs" : `View all ${galleryItems.length} photographs`;
 });
 
 lightbox.querySelector("[data-lightbox-close]").addEventListener("click", () => lightbox.close());
