@@ -72,6 +72,15 @@
 
 final result: passed
 
+### Girly and Glam default reel
+
+- Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/DB36D766-B52E-4E05-888A-67DE5EFBC7FF/1-Photo-1.jpg` (1280 × 368 screenshot).
+- Promoted `Girly and Glam Commercial` from position 6 to position 1 and made it the initial hero and player selection.
+- Moved `Warm and Whimsical Read` to position 6 so the six-recording set remains complete.
+- Updated the initial player duration and accessible controls to `0:29` and `Girly and Glam Commercial`.
+
+final result: passed
+
 ### Default reel and mobile availability spacing
 
 - Source visual truth: `/tmp/codex-remote-attachments/01a005cb-22e1-7622-967d-c6a50306d649/DE7C9737-284B-48DE-B052-E8344B757F75/1-Photo-1.jpg` (1280 × 853 screenshot).
